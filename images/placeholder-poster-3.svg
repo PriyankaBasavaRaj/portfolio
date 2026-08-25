@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="300" height="450" viewBox="0 0 300 450">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#2D5D3A" stop-opacity="1"/>
+      <stop offset="100%" stop-color="#0b0b0b" stop-opacity="1"/>
+    </linearGradient>
+  </defs>
+  <rect width="300" height="450" fill="url(#g)"/>
+  <text x="150" y="220" font-family="Helvetica, Arial, sans-serif" font-size="26" font-weight="700" fill="#f5f5f1" text-anchor="middle"><tspan x="150" dy="0">COVID-19</tspan><tspan x="150" dy="32">Visualization</tspan></text>
+</svg>

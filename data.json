@@ -1,0 +1,120 @@
+{
+  "hero": {
+    "title": "Priyanka",
+    "logoText": "PRIYANKA",
+    "tagline": "Senior Analytics Consultant · Data, GCP & AI-driven Growth Stories",
+    "backgroundVideo": "https://cdn.coverr.co/videos/coverr-typing-on-a-laptop-9573/1080p.mp4",
+    "backgroundPoster": "images/hero-poster.svg",
+    "match": "98% Match",
+    "meta": ["2025", "Analytics", "GCP · BigQuery · GA4", "Atlanta, GA"],
+    "synopsis": "From Sydney to Atlanta: a Senior Analytics Consultant turning messy data into decisions, dashboards, and AI-powered products. Featuring appearances by SQL, Python, BigQuery, and one very persistent Tableau habit."
+  },
+  "rows": [
+    {
+      "id": "featured",
+      "title": "Featured Projects"
+    },
+    {
+      "id": "all",
+      "title": "All Projects"
+    },
+    {
+      "id": "connect",
+      "title": "Connect with Me"
+    }
+  ],
+  "projects": [
+    {
+      "id": "nashville-housing",
+      "title": "Data Cleaning in SQL",
+      "poster": "images/placeholder-poster-1.svg",
+      "backdrop": "images/placeholder-backdrop-1.svg",
+      "synopsis": "A gritty procedural about messy real-estate records. Standardized dates, split addresses, removed duplicates, and imputed missing values on Nashville housing data using SQL Server — turning chaos into a clean, query-ready dataset.",
+      "tags": ["SQL", "Data Cleaning", "SQL Server"],
+      "year": "2023",
+      "rating": "TV-DA",
+      "duration": "1 Script",
+      "featured": true,
+      "embedType": "link",
+      "githubUrl": "https://github.com/PriyankaBasavaRaj/Portfolio-Project/blob/main/Nashville%20Housing%20Data%20cleaning.sql",
+      "liveAppUrl": null
+    },
+    {
+      "id": "covid-exploration",
+      "title": "Data Exploration in SQL",
+      "poster": "images/placeholder-poster-2.svg",
+      "backdrop": "images/placeholder-backdrop-2.svg",
+      "synopsis": "A global outbreak, examined one query at a time. Explored COVID-19 case and death data with SQL — window functions, CTEs, and aggregate views — to surface trends across countries and time.",
+      "tags": ["SQL", "Data Exploration", "COVID-19"],
+      "year": "2023",
+      "rating": "TV-DA",
+      "duration": "1 Script",
+      "featured": true,
+      "embedType": "link",
+      "githubUrl": "https://github.com/PriyankaBasavaRaj/Portfolio-Project/blob/main/Covid%20data%20analysis.sql",
+      "liveAppUrl": null
+    },
+    {
+      "id": "covid-tableau",
+      "title": "COVID-19 Data Visualization",
+      "poster": "images/placeholder-poster-3.svg",
+      "backdrop": "images/placeholder-backdrop-3.svg",
+      "synopsis": "The pandemic, visualized. An interactive Tableau dashboard tracking global infection and mortality trends — built for at-a-glance clarity during a very unclear time.",
+      "tags": ["Tableau", "Data Visualization", "Dashboard"],
+      "year": "2023",
+      "rating": "TV-DA",
+      "duration": "1 Dashboard",
+      "featured": true,
+      "embedType": "tableau",
+      "githubUrl": null,
+      "liveAppUrl": "https://public.tableau.com/app/profile/priyanka.raj5710"
+    }
+  ],
+  "connect": [
+    {
+      "id": "linkedin",
+      "title": "LinkedIn",
+      "poster": "images/placeholder-connect-linkedin.svg",
+      "synopsis": "Follow the professional journey — roles, recommendations, and everything in between.",
+      "tags": ["Network", "Professional"],
+      "cta": "Connect",
+      "url": "https://au.linkedin.com/in/priyanka-basava-raj"
+    },
+    {
+      "id": "github",
+      "title": "GitHub",
+      "poster": "images/placeholder-connect-github.svg",
+      "synopsis": "The source code behind the portfolio. Browse repos, commits, and works in progress.",
+      "tags": ["Code", "Open Source"],
+      "cta": "View Repos",
+      "url": "https://github.com/PriyankaBasavaRaj/Portfolio-Project"
+    },
+    {
+      "id": "tableau",
+      "title": "Tableau Public",
+      "poster": "images/placeholder-connect-tableau.svg",
+      "synopsis": "Dashboards and visual stories, published and ready to explore.",
+      "tags": ["Dashboards", "Visualization"],
+      "cta": "Explore",
+      "url": "https://public.tableau.com/app/profile/priyanka.raj5710"
+    },
+    {
+      "id": "email",
+      "title": "Email",
+      "poster": "images/placeholder-connect-email.svg",
+      "synopsis": "Straight to the inbox. For roles, collaborations, or just to say hi.",
+      "tags": ["Direct", "Contact"],
+      "cta": "Send Email",
+      "url": "mailto:priyankabraj123@gmail.com"
+    },
+    {
+      "id": "resume",
+      "title": "Resume",
+      "poster": "images/placeholder-connect-resume.svg",
+      "synopsis": "The full credits list — roles, tools, and results in one document.",
+      "tags": ["Download", "PDF"],
+      "cta": "Download",
+      "url": "assets/Priyanka_Basava_Raj_Resume.pdf"
+    }
+  ]
+}
