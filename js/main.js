@@ -63,7 +63,7 @@
     $('#heroTagline').textContent = profile.heroTagline || '';
     $('#heroSynopsis').textContent = profile.heroSynopsis || '';
 
-    // Hero media plays directly — no separate intro screen, no skip button
+    // Hero media plays directly, framed to a fixed rectangle — no separate intro screen
     const mediaWrap = $('#heroMedia');
     mediaWrap.innerHTML = '';
     let mediaEl;
@@ -80,9 +80,6 @@
       mediaEl.alt = '';
     }
     mediaWrap.appendChild(mediaEl);
-    const sideFade = document.createElement('div');
-    sideFade.className = 'hero-fade-side';
-    mediaWrap.appendChild(sideFade);
     if (mediaEl.play) mediaEl.play().catch(() => {});
 
     renderNav(profile);
@@ -90,11 +87,10 @@
   }
 
   function renderNav(profile) {
-    const links = $all('#browseNavLinks a');
     const fullProfile = profile.id !== 'stalker';
-    links.forEach(a => {
-      const href = a.getAttribute('href');
-      if (!fullProfile && (href === '#section-professional' || href === '#section-skills' || href === '#section-projects')) {
+    $all('#browseNavLinks a').forEach(a => {
+      const key = a.dataset.nav;
+      if (!fullProfile && (key === 'professional' || key === 'skills' || key === 'projects')) {
         a.classList.add('disabled');
       } else {
         a.classList.remove('disabled');
@@ -102,9 +98,10 @@
     });
   }
 
-  function rowHeader(title) {
+  function rowHeader(title, id) {
     const section = document.createElement('section');
     section.className = 'row';
+    if (id) section.id = id;
     const header = document.createElement('div');
     header.className = 'row-header';
     const h2 = document.createElement('h2');
@@ -138,11 +135,22 @@
     right.addEventListener('click', () => track.scrollBy({ left: amt(), behavior: 'smooth' }));
   }
 
-  // Single-click utility icon: no modal-then-arrow chain — each icon does its whole job in one click
+  const UTILITY_GLYPHS = {
+    workpermit: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="5" width="20" height="14" rx="2"/><circle cx="8" cy="12" r="2"/><line x1="14" y1="10" x2="19" y2="10"/><line x1="14" y1="14" x2="19" y2="14"/></svg>',
+    skills: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="16 18 22 12 16 6"/><polyline points="8 6 2 12 8 18"/></svg>',
+    experience: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="7" width="20" height="14" rx="2"/><path d="M16 7V5a2 2 0 0 0-2-2h-4a2 2 0 0 0-2 2v2"/></svg>',
+    awards: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="12" cy="8" r="6"/><path d="M9 13.5 7 22l5-3 5 3-2-8.5"/></svg>',
+    projects: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><circle cx="6" cy="6" r="3"/><circle cx="6" cy="18" r="3"/><circle cx="18" cy="12" r="3"/><path d="M8.6 7.5 15.4 10.5M8.6 16.5 15.4 13.5"/></svg>',
+    contact: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><rect x="2" y="4" width="20" height="16" rx="2"/><polyline points="2 7 12 13 22 7"/></svg>'
+  };
+
+  // Single-click utility icon: photo card, whole card click opens the content directly
   function utilityIconCard(item) {
     const el = document.createElement('button');
     el.className = 'utility-icon-card';
-    el.innerHTML = `<img src="${item.icon}" alt="${item.label}"><span>${item.label}</span>`;
+    el.innerHTML = `
+      <img class="uic-photo" src="${item.photo}" alt="${item.label}" loading="lazy">
+      <div class="uic-label-bar">${UTILITY_GLYPHS[item.id] || ''}<span>${item.label}</span></div>`;
     el.addEventListener('click', () => runUtilityAction(item.action));
     return el;
   }
@@ -156,24 +164,19 @@
       case 'modal-skills':
         openSkillsModal(d.skills);
         break;
+      case 'modal-experience':
+        openExperienceModal(d.experience);
+        break;
       case 'modal-awards':
         openAwardsModal(d.awards);
         break;
-      case 'anchor-professional':
-        scrollToSection('section-professional');
-        break;
-      case 'anchor-projects':
-        scrollToSection('section-projects');
+      case 'modal-projects':
+        openProjectsModal(d);
         break;
       case 'mailto-contact':
         window.location.href = `mailto:${d.hireMe.email}`;
         break;
     }
-  }
-
-  function scrollToSection(id) {
-    const el = document.getElementById(id);
-    if (el) el.scrollIntoView({ behavior: 'smooth', block: 'start' });
   }
 
   // Single-click direct link card (no modal step)
@@ -203,20 +206,13 @@
     return a;
   }
 
-  function skillCard(skill) {
-    const el = document.createElement('div');
-    el.className = 'skill-card';
-    el.innerHTML = `<img src="${skill.icon}" alt="${skill.name}"><span>${skill.name}</span>`;
-    return el;
-  }
-
   function renderRows(profile) {
     const container = $('#rowsContainer');
     container.innerHTML = '';
     const d = state.data;
 
     if (profile.id === 'stalker') {
-      const cw = rowHeader(`Continue Watching for ${profile.label}`);
+      const cw = rowHeader(`Continue Watching for ${profile.label}`, 'row-continue-watching');
       const cwWrap = trackWrap();
       const cwTrack = $('.row-track', cwWrap);
       d.projects.forEach(p => cwTrack.appendChild(projectLinkCard(p)));
@@ -231,21 +227,12 @@
       picks.appendChild(picksWrap);
       container.appendChild(picks);
       wireArrows(picksWrap);
-
-      const hireSection = document.createElement('section');
-      hireSection.className = 'row';
-      hireSection.id = 'section-hire-me';
-      hireSection.innerHTML = `
-        <div class="row-header"><h2 class="row-title">${d.hireMe.heading}</h2></div>
-        <p class="empty-row-note">${d.hireMe.body} <a href="mailto:${d.hireMe.email}" style="color:var(--text);text-decoration:underline;">${d.hireMe.email}</a></p>`;
-      container.appendChild(hireSection);
       return;
     }
 
-    // ---- Recruiter / Referrer ----
+    // ---- Recruiter / Referrer: exactly two rows ----
 
-    // Continue Watching for [Profile] — now the single row of utility icons
-    const cw = rowHeader(`Continue Watching for ${profile.label}`);
+    const cw = rowHeader(`Continue Watching for ${profile.label}`, 'row-continue-watching');
     const cwWrap = trackWrap();
     const cwTrack = $('.row-track', cwWrap);
     d.utilityIcons.forEach(item => cwTrack.appendChild(utilityIconCard(item)));
@@ -253,75 +240,6 @@
     container.appendChild(cw);
     wireArrows(cwWrap);
 
-    // Professional (full experience, always visible — no click-through needed)
-    const profSection = document.createElement('section');
-    profSection.className = 'row professional-section';
-    profSection.id = 'section-professional';
-    const profList = document.createElement('div');
-    profList.className = 'professional-list';
-    profSection.innerHTML = `<div class="row-header"><h2 class="row-title">Professional</h2></div>`;
-    d.experience.forEach(e => {
-      const card = document.createElement('div');
-      card.className = 'professional-card';
-      card.innerHTML = `
-        <h3>${e.role}</h3>
-        <div class="prof-meta">${e.company}${e.dates ? ' · ' + e.dates : ''}</div>
-        <ul>${e.bullets.map(b => `<li>${b}</li>`).join('')}</ul>`;
-      profList.appendChild(card);
-    });
-    profSection.appendChild(profList);
-    container.appendChild(profSection);
-
-    // Skills (kept as a section for direct nav access)
-    const skillsSection = rowHeader('Skills');
-    skillsSection.id = 'section-skills';
-    const skillsWrap = trackWrap();
-    const skillsTrack = $('.row-track', skillsWrap);
-    d.skills.forEach(s => skillsTrack.appendChild(skillCard(s)));
-    skillsSection.appendChild(skillsWrap);
-    container.appendChild(skillsSection);
-    wireArrows(skillsWrap);
-
-    // Projects (grid, always-visible details, single click opens link)
-    const projSection = document.createElement('section');
-    projSection.className = 'row';
-    projSection.id = 'section-projects';
-    projSection.innerHTML = `<div class="row-header"><h2 class="row-title">Projects</h2></div>`;
-
-    const banner = document.createElement('div');
-    banner.className = 'projects-banner';
-    banner.innerHTML = `
-      <div class="projects-banner-text">
-        <h3>${d.projectsBanner.title}</h3>
-        <p>${d.projectsBanner.body}</p>
-      </div>
-      <a class="btn btn-primary" href="${d.projectsBanner.url}" target="_blank" rel="noopener">${d.projectsBanner.buttonLabel}</a>`;
-    projSection.appendChild(banner);
-
-    const grid = document.createElement('div');
-    grid.className = 'projects-grid';
-    d.projects.forEach(p => {
-      const a = document.createElement('a');
-      a.className = 'project-grid-card';
-      a.href = p.githubUrl || p.liveAppUrl || '#';
-      a.target = '_blank';
-      a.rel = 'noopener';
-      a.innerHTML = `
-        <div class="pgc-media">
-          <img src="${p.backdrop}" alt="${p.title}">
-          ${p.updated ? `<span class="pgc-updated">Updated ${p.updated}</span>` : ''}
-        </div>
-        <div class="pgc-body">
-          <h4>${p.title}</h4>
-          <p>${p.synopsis}</p>
-          <div class="pgc-tags">${(p.tags || []).map(t => `<span>${t}</span>`).join('')}</div>
-        </div>`;
-      grid.appendChild(a);
-    });
-    projSection.appendChild(grid);
-    container.appendChild(projSection);
-
-    // Today's Top Picks
     const picks = rowHeader(`Today's Top Picks for ${profile.label}`);
     const picksWrap = trackWrap();
     const picksTrack = $('.row-track', picksWrap);
@@ -329,15 +247,6 @@
     picks.appendChild(picksWrap);
     container.appendChild(picks);
     wireArrows(picksWrap);
-
-    // Hire Me
-    const hireSection = document.createElement('section');
-    hireSection.className = 'row';
-    hireSection.id = 'section-hire-me';
-    hireSection.innerHTML = `
-      <div class="row-header"><h2 class="row-title">${d.hireMe.heading}</h2></div>
-      <p class="empty-row-note">${d.hireMe.body} <a href="mailto:${d.hireMe.email}" style="color:var(--text);text-decoration:underline;">${d.hireMe.email}</a></p>`;
-    container.appendChild(hireSection);
   }
 
   // ---------- MODALS ----------
@@ -348,7 +257,8 @@
     return `<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg>`;
   }
 
-  function openModalShell(bodyHtml) {
+  function openModalShell(bodyHtml, wide) {
+    modal.className = wide ? 'modal modal-wide' : 'modal';
     modal.innerHTML = bodyHtml;
     overlay.classList.add('open');
     document.body.style.overflow = 'hidden';
@@ -358,7 +268,7 @@
   function closeModal() {
     overlay.classList.remove('open');
     document.body.style.overflow = '';
-    setTimeout(() => { modal.innerHTML = ''; }, 200);
+    setTimeout(() => { modal.innerHTML = ''; modal.className = 'modal'; }, 200);
   }
 
   overlay.addEventListener('click', e => { if (e.target === overlay) closeModal(); });
@@ -393,13 +303,71 @@
       </div>`);
   }
 
-  // ---------- NAV SCROLL STATE ----------
+  function openExperienceModal(experience) {
+    openModalShell(`
+      <button class="modal-close" aria-label="Close" style="position:absolute;">${closeIcon()}</button>
+      <div class="modal-text-block">
+        <h2>Experience</h2>
+        ${experience.map(e => `
+          <div class="professional-card" style="margin-bottom:16px;">
+            <h3>${e.role}</h3>
+            <div class="prof-meta">${e.company}${e.dates ? ' · ' + e.dates : ''}</div>
+            <ul>${e.bullets.map(b => `<li>${b}</li>`).join('')}</ul>
+          </div>`).join('')}
+      </div>`, true);
+  }
+
+  function openProjectsModal(d) {
+    const grid = d.projects.map(p => `
+      <a class="project-grid-card" href="${p.githubUrl || p.liveAppUrl || '#'}" target="_blank" rel="noopener">
+        <div class="pgc-media">
+          <img src="${p.backdrop}" alt="${p.title}">
+          ${p.updated ? `<span class="pgc-updated">Updated ${p.updated}</span>` : ''}
+        </div>
+        <div class="pgc-body">
+          <h4>${p.title}</h4>
+          <p>${p.synopsis}</p>
+          <div class="pgc-tags">${(p.tags || []).map(t => `<span>${t}</span>`).join('')}</div>
+        </div>
+      </a>`).join('');
+
+    openModalShell(`
+      <button class="modal-close" aria-label="Close" style="position:absolute;">${closeIcon()}</button>
+      <div class="modal-text-block">
+        <h2>Projects</h2>
+        <div class="projects-banner" style="margin:0 0 20px;">
+          <div class="projects-banner-text">
+            <h3>${d.projectsBanner.title}</h3>
+            <p>${d.projectsBanner.body}</p>
+          </div>
+          <a class="btn btn-primary" href="${d.projectsBanner.url}" target="_blank" rel="noopener">${d.projectsBanner.buttonLabel}</a>
+        </div>
+        <div class="modal-projects-grid">${grid}</div>
+      </div>`, true);
+  }
+
+  // ---------- NAV ----------
+  function wireNav() {
+    $all('#browseNavLinks a').forEach(a => {
+      a.addEventListener('click', e => {
+        if (a.classList.contains('disabled')) { e.preventDefault(); return; }
+        const key = a.dataset.nav;
+        const d = state.data;
+        if (key === 'home') return; // native anchor to #top is fine
+        e.preventDefault();
+        if (key === 'professional') openExperienceModal(d.experience);
+        else if (key === 'skills') openSkillsModal(d.skills);
+        else if (key === 'projects') openProjectsModal(d);
+        else if (key === 'hireme') window.location.href = `mailto:${d.hireMe.email}`;
+      });
+    });
+  }
+
   window.addEventListener('scroll', () => {
     const nav = $('#siteNav');
     if (nav) nav.classList.toggle('scrolled', window.scrollY > 20);
   }, { passive: true });
 
-  // ---------- PROFILE SWITCHER ----------
   $('#profileSwitcher').addEventListener('click', () => {
     document.getElementById('app').style.display = 'none';
     renderProfileGrid();
@@ -409,6 +377,11 @@
   // ---------- INIT ----------
   try {
     state.data = await loadData();
+    $('#heroHireMeBtn').addEventListener('click', e => {
+      e.preventDefault();
+      window.location.href = `mailto:${state.data.hireMe.email}`;
+    });
+    wireNav();
     runIntro();
   } catch (err) {
     console.error(err);

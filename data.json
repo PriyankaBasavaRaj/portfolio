@@ -35,12 +35,12 @@
     }
   ],
   "utilityIcons": [
-    { "id": "workpermit", "label": "Work Permit", "icon": "images/icon-workpermit.svg", "action": "modal-workpermit" },
-    { "id": "skills", "label": "Skills", "icon": "images/icon-skills.svg", "action": "modal-skills" },
-    { "id": "experience", "label": "Experience", "icon": "images/icon-experience.svg", "action": "anchor-professional" },
-    { "id": "awards", "label": "Awards", "icon": "images/icon-awards.svg", "action": "modal-awards" },
-    { "id": "projects", "label": "Projects", "icon": "images/icon-projects.svg", "action": "anchor-projects" },
-    { "id": "contact", "label": "Contact Me", "icon": "images/icon-contact.svg", "action": "mailto-contact" }
+    { "id": "workpermit", "label": "Work Permit", "photo": "https://picsum.photos/seed/priyanka-workpermit/500/650", "action": "modal-workpermit" },
+    { "id": "skills", "label": "Skills", "photo": "https://picsum.photos/seed/priyanka-skills/500/650", "action": "modal-skills" },
+    { "id": "experience", "label": "Experience", "photo": "https://picsum.photos/seed/priyanka-experience/500/650", "action": "modal-experience" },
+    { "id": "awards", "label": "Awards", "photo": "https://picsum.photos/seed/priyanka-awards/500/650", "action": "modal-awards" },
+    { "id": "projects", "label": "Projects", "photo": "https://picsum.photos/seed/priyanka-projects/500/650", "action": "modal-projects" },
+    { "id": "contact", "label": "Contact Me", "photo": "https://picsum.photos/seed/priyanka-contact/500/650", "action": "mailto-contact" }
   ],
   "workPermit": {
     "heading": "Work Authorization",
@@ -141,6 +141,19 @@
     "url": "https://github.com/PriyankaBasavaRaj/Portfolio-Project"
   },
   "projects": [
+    {
+      "id": "parkinsons-voice-detector",
+      "title": "Parkinson's Voice Detector",
+      "poster": "images/placeholder-poster-4.svg",
+      "backdrop": "images/placeholder-backdrop-4.svg",
+      "synopsis": "A machine learning app that analyzes voice recordings to detect vocal biomarkers associated with Parkinson's disease — try it live with your own recording.",
+      "tags": ["Machine Learning", "Python", "Voice Analysis"],
+      "updated": "2026",
+      "featured": true,
+      "embedType": "iframe",
+      "githubUrl": null,
+      "liveAppUrl": "https://priyankabasavaraj.github.io/parkinsons-voice-detector/"
+    },
     {
       "id": "nashville-housing",
       "title": "Data Cleaning in SQL",

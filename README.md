@@ -1,42 +1,49 @@
-# Priyanka — Netflix Portfolio v2 (Who's Watching)
+# Priyanka — Netflix Portfolio v3
 
 Static site, no build step. All content lives in **`data.json`**.
 
 ## Flow
 1. Intro logo animation (~2s)
 2. "Who's Watching?" — pick Recruiter / Referrer / Stalker
-3. Short intro clip plays for that profile (skip button available)
-4. Lands on the profile-specific browse page
+3. Lands directly on that profile's browse page — hero video/gif plays
+   immediately in a framed rectangle behind the name (no click-to-play,
+   no skip button)
 
-## Structure per profile
-- **Recruiter & Referrer** (identical structure, same data):
-  Continue Watching → Work Permit → Skills → Experience → Awards →
-  Recommendations (placeholder) → Projects → Today's Top Picks → Hire Me
-- **Stalker**: Continue Watching → Today's Top Picks (Netflix, Banger Music,
-  Instagram, Craft — all placeholder links right now) → Hire Me
+## Page structure (exactly 2 rows per profile)
+- **Recruiter & Referrer**:
+  1. "Continue Watching for [Profile]" — 6 photo-backed icon cards
+     (Work Permit, Skills, Experience, Awards, Projects, Contact Me).
+     Single click on any icon opens its full content directly in a
+     popup — no page sections, no second click needed.
+  2. "Today's Top Picks for [Profile]" — Music, Reading (direct links)
+- **Stalker**: same 2-row shape, but Continue Watching shows the
+  actual projects, and Today's Top Picks shows Netflix / Banger Music
+  / Instagram / Craft (all placeholder links)
 
-Top nav (Home / Professional / Skills / Projects / Hire Me) scrolls the
-same page. On the Stalker profile, Professional/Skills/Projects are
-grayed out since that content doesn't exist there.
+Top nav (Home / Professional / Skills / Projects / Hire Me) opens the
+same popups as the icons — Professional and Skills and Projects are
+just shortcuts to those modals, not separate scroll sections. On the
+Stalker profile those three are grayed out. Hire Me (nav link and
+hero button) opens your email client directly.
 
 ## Editing content — all in `data.json`
-- `profiles` — avatar image, accent color, intro video/gif, hero text per profile
-- `workPermit` — heading + lines shown in the Work Permit popup
-- `skills` — name + icon (currently placeholder monogram tiles in `images/skill-*.svg`)
-- `experience` — one entry per role; `bullets` show in the popup
-- `awards` — title / year / category
-- `recommendations` — empty for now; add `{ "name", "role", "quote" }` objects to populate
-- `projects` — same project objects as before (poster, backdrop, synopsis, tags, embedType, links)
-- `topPicksShared` — Music / Reading / Blogs / Contact Me (Recruiter & Referrer)
-- `topPicksStalker` — Netflix / Banger Music / Instagram / Craft (Stalker)
-- `funExtras` — the promotion.gif / why-refer-me.gif easter-egg banners
-- `hireMe` — placeholder heading/body/email until the dedicated page is built
+- `profiles` — avatar, accent color, hero video/gif, hero text
+- `utilityIcons` — the 6 Continue Watching icons; `photo` is the
+  background image (currently Lorem Picsum placeholders — swap for
+  real Unsplash/your-own photos any time, same field)
+- `workPermit`, `skills`, `experience`, `awards`, `recommendations` —
+  content shown inside each icon's popup
+- `projects` — same objects as before; now includes the Parkinson's
+  Voice Detector app linking to its live URL
+- `projectsBanner` — the "Explore GitHub" banner inside the Projects popup
+- `topPicksShared` / `topPicksStalker` — direct-link cards
+- `hireMe` — email used everywhere Hire Me is clicked
 
-## Known placeholders to swap later
-- All `topPicksShared` and `topPicksStalker` URLs are `#` — add real links when ready
-- Skill icons are colored initials — swap for real logos in `images/skill-*.svg` (keep filenames or update the `icon` path in `data.json`)
-- Recommendations row is empty — add entries when you have quotes
-- Hire Me is a placeholder note — build the real page later and update the nav link / `hireMe` object
+## About the icon photos
+Unsplash's old hotlink API (Source) was discontinued, so the 6 icon
+photos currently use Lorem Picsum (stable, real stock photography,
+safe to hotlink). Swap any of them for a specific photo later by
+changing the `photo` URL in `utilityIcons` — no code changes needed.
 
 ## Local preview
 ```
@@ -45,5 +52,6 @@ python3 -m http.server 8000
 Open `http://localhost:8000`.
 
 ## Deploy
-Same as before — push these files to your GitHub repo (or a new one) and
-enable GitHub Pages, source = `main` branch, `/ (root)`.
+Push these files to your `portfolio` GitHub repo (replace everything),
+commit, push. GitHub Pages redeploys automatically within a couple of
+minutes at your existing URL.

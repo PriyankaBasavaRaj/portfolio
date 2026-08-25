@@ -29,11 +29,11 @@
   <nav class="nav" id="siteNav">
     <div class="nav-brand">PRIYANKA</div>
     <ul class="nav-links browse-nav-links" id="browseNavLinks">
-      <li><a href="#top">Home</a></li>
-      <li><a href="#section-professional">Professional</a></li>
-      <li><a href="#section-skills">Skills</a></li>
-      <li><a href="#section-projects">Projects</a></li>
-      <li><a href="#section-hire-me">Hire Me</a></li>
+      <li><a href="#top" data-nav="home">Home</a></li>
+      <li><a href="#" data-nav="professional">Professional</a></li>
+      <li><a href="#" data-nav="skills">Skills</a></li>
+      <li><a href="#" data-nav="projects">Projects</a></li>
+      <li><a href="#" data-nav="hireme">Hire Me</a></li>
     </ul>
     <button class="profile-switcher" id="profileSwitcher">
       <img id="navProfileAvatar" src="" alt="">
@@ -42,18 +42,20 @@
   </nav>
 
   <header class="hero" id="top">
-    <div class="hero-media" id="heroMedia"></div>
+    <div class="hero-media-frame">
+      <div class="hero-media" id="heroMedia"></div>
+    </div>
     <div class="hero-fade-bottom"></div>
     <div class="hero-content">
       <p class="hero-eyebrow" id="heroTagline"></p>
       <h1 class="hero-title">Priyanka</h1>
       <p class="hero-synopsis" id="heroSynopsis"></p>
       <div class="hero-actions">
-        <a href="#section-professional" class="btn btn-primary">
+        <a href="#row-continue-watching" class="btn btn-primary">
           <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
           View Profile
         </a>
-        <a href="#section-hire-me" class="btn btn-secondary">Hire Me</a>
+        <a href="#" class="btn btn-secondary" id="heroHireMeBtn">Hire Me</a>
       </div>
     </div>
   </header>
