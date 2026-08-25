@@ -1,0 +1,10 @@
+<svg xmlns="http://www.w3.org/2000/svg" width="220" height="220" viewBox="0 0 220 220">
+  <defs>
+    <linearGradient id="g" x1="0" y1="0" x2="0" y2="1">
+      <stop offset="0%" stop-color="#1c1c1c"/>
+      <stop offset="100%" stop-color="#0a0a0a"/>
+    </linearGradient>
+  </defs>
+  <rect width="220" height="220" rx="14" fill="url(#g)" stroke="#e50914" stroke-width="2"/>
+  <text x="110.0" y="118.0" font-family="Helvetica, Arial, sans-serif" font-size="20" font-weight="700" fill="#f5f5f1" text-anchor="middle"><tspan x="110.0" dy="0">EXPERI-</tspan><tspan x="110.0" dy="26">ENCE</tspan></text>
+</svg>

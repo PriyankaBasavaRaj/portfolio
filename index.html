@@ -23,13 +23,7 @@
   <div class="profile-grid" id="profileGrid"></div>
 </div>
 
-<!-- SCREEN 3: PROFILE INTRO PLAYBACK -->
-<div class="screen hidden profile-intro-screen" id="screenProfileIntro" data-state="offstage">
-  <div id="profileIntroMedia"></div>
-  <button class="profile-intro-skip" id="skipIntroBtn">Skip</button>
-</div>
-
-<!-- MAIN BROWSE APP (hidden until a profile is chosen) -->
+<!-- MAIN BROWSE APP (hidden until a profile is chosen; video plays directly in hero, no separate intro screen) -->
 <div id="app" style="display:none;">
 
   <nav class="nav" id="siteNav">
@@ -48,10 +42,7 @@
   </nav>
 
   <header class="hero" id="top">
-    <div class="hero-media">
-      <img id="heroImg" src="images/hero-poster.svg" alt="">
-      <div class="hero-fade-side"></div>
-    </div>
+    <div class="hero-media" id="heroMedia"></div>
     <div class="hero-fade-bottom"></div>
     <div class="hero-content">
       <p class="hero-eyebrow" id="heroTagline"></p>

@@ -8,31 +8,39 @@
       "label": "Recruiter",
       "avatar": "images/avatar-recruiter.png",
       "accent": "#2FA8E0",
-      "introType": "video",
-      "introSrc": "videos/recruiter-intro.mp4",
-      "heroTagline": "Senior Analytics Consultant · Ready for the next role",
-      "heroSynopsis": "Data, GCP, and AI-driven growth stories from Sydney to Atlanta. Scroll down for work authorization, skills, experience, awards, and the projects that back it all up."
+      "heroBackgroundType": "video",
+      "heroBackgroundSrc": "videos/recruiter-intro.mp4",
+      "heroTagline": "",
+      "heroSynopsis": ""
     },
     {
       "id": "referrer",
       "label": "Referrer",
       "avatar": "images/avatar-referrer.png",
       "accent": "#E8B330",
-      "introType": "gif",
-      "introSrc": "videos/referrer-intro.gif",
+      "heroBackgroundType": "gif",
+      "heroBackgroundSrc": "videos/why-refer-me.gif",
       "heroTagline": "Thinking of referring me? Here's everything you need.",
-      "heroSynopsis": "Same story, referrer's cut: work authorization, skills, experience, awards, and projects — all in one place to make the referral easy."
+      "heroSynopsis": "Work authorization, skills, experience, awards, and projects — all in one place to make referring me easy."
     },
     {
       "id": "stalker",
       "label": "Stalker",
       "avatar": "images/avatar-stalker.png",
       "accent": "#D63A3A",
-      "introType": "gif",
-      "introSrc": "videos/stalker-intro.gif",
+      "heroBackgroundType": "gif",
+      "heroBackgroundSrc": "videos/stalker-intro.gif",
       "heroTagline": "Okay, you found the secret profile.",
       "heroSynopsis": "No resume here — just the fun stuff. Enjoy."
     }
+  ],
+  "utilityIcons": [
+    { "id": "workpermit", "label": "Work Permit", "icon": "images/icon-workpermit.svg", "action": "modal-workpermit" },
+    { "id": "skills", "label": "Skills", "icon": "images/icon-skills.svg", "action": "modal-skills" },
+    { "id": "experience", "label": "Experience", "icon": "images/icon-experience.svg", "action": "anchor-professional" },
+    { "id": "awards", "label": "Awards", "icon": "images/icon-awards.svg", "action": "modal-awards" },
+    { "id": "projects", "label": "Projects", "icon": "images/icon-projects.svg", "action": "anchor-projects" },
+    { "id": "contact", "label": "Contact Me", "icon": "images/icon-contact.svg", "action": "mailto-contact" }
   ],
   "workPermit": {
     "heading": "Work Authorization",
@@ -122,31 +130,25 @@
     }
   ],
   "awards": [
-    {
-      "id": "bt-30u30",
-      "title": "B&T 30 Under 30 Finalist",
-      "year": "2025",
-      "category": "Tech"
-    },
-    {
-      "id": "young-guns",
-      "title": "Young Guns Tech Rising Star",
-      "year": "2024",
-      "category": "Tech"
-    }
+    { "id": "bt-30u30", "title": "B&T 30 Under 30 Finalist", "year": "2025", "category": "Tech" },
+    { "id": "young-guns", "title": "Young Guns Tech Rising Star", "year": "2024", "category": "Tech" }
   ],
   "recommendations": [],
+  "projectsBanner": {
+    "title": "Live Builds & Projects",
+    "body": "More scripts, dashboards, and data experiments live on my GitHub.",
+    "buttonLabel": "Explore GitHub",
+    "url": "https://github.com/PriyankaBasavaRaj/Portfolio-Project"
+  },
   "projects": [
     {
       "id": "nashville-housing",
       "title": "Data Cleaning in SQL",
       "poster": "images/placeholder-poster-1.svg",
       "backdrop": "images/placeholder-backdrop-1.svg",
-      "synopsis": "A gritty procedural about messy real-estate records. Standardized dates, split addresses, removed duplicates, and imputed missing values on Nashville housing data using SQL Server — turning chaos into a clean, query-ready dataset.",
+      "synopsis": "Standardized dates, split addresses, removed duplicates, and imputed missing values on Nashville housing data using SQL Server — turning chaos into a clean, query-ready dataset.",
       "tags": ["SQL", "Data Cleaning", "SQL Server"],
-      "year": "2023",
-      "rating": "TV-DA",
-      "duration": "1 Script",
+      "updated": "2023",
       "featured": true,
       "embedType": "link",
       "githubUrl": "https://github.com/PriyankaBasavaRaj/Portfolio-Project/blob/main/Nashville%20Housing%20Data%20cleaning.sql",
@@ -157,11 +159,9 @@
       "title": "Data Exploration in SQL",
       "poster": "images/placeholder-poster-2.svg",
       "backdrop": "images/placeholder-backdrop-2.svg",
-      "synopsis": "A global outbreak, examined one query at a time. Explored COVID-19 case and death data with SQL — window functions, CTEs, and aggregate views — to surface trends across countries and time.",
+      "synopsis": "Explored COVID-19 case and death data with SQL — window functions, CTEs, and aggregate views — to surface trends across countries and time.",
       "tags": ["SQL", "Data Exploration", "COVID-19"],
-      "year": "2023",
-      "rating": "TV-DA",
-      "duration": "1 Script",
+      "updated": "2023",
       "featured": true,
       "embedType": "link",
       "githubUrl": "https://github.com/PriyankaBasavaRaj/Portfolio-Project/blob/main/Covid%20data%20analysis.sql",
@@ -172,11 +172,9 @@
       "title": "COVID-19 Data Visualization",
       "poster": "images/placeholder-poster-3.svg",
       "backdrop": "images/placeholder-backdrop-3.svg",
-      "synopsis": "The pandemic, visualized. An interactive Tableau dashboard tracking global infection and mortality trends — built for at-a-glance clarity during a very unclear time.",
+      "synopsis": "An interactive Tableau dashboard tracking global infection and mortality trends — built for at-a-glance clarity during a very unclear time.",
       "tags": ["Tableau", "Data Visualization", "Dashboard"],
-      "year": "2023",
-      "rating": "TV-DA",
-      "duration": "1 Dashboard",
+      "updated": "2023",
       "featured": true,
       "embedType": "tableau",
       "githubUrl": null,
@@ -184,21 +182,15 @@
     }
   ],
   "topPicksShared": [
-    { "id": "music", "title": "Music", "poster": "images/placeholder-pick-music.svg", "url": "#", "synopsis": "A playlist page — coming soon." },
-    { "id": "reading", "title": "Reading", "poster": "images/placeholder-pick-reading.svg", "url": "#", "synopsis": "What I'm reading — coming soon." },
-    { "id": "blogs", "title": "Blogs", "poster": "images/placeholder-pick-blogs.svg", "url": "#", "synopsis": "Writing and notes — coming soon." },
-    { "id": "contact", "title": "Contact Me", "poster": "images/placeholder-pick-contact.svg", "url": "mailto:priyankabraj123@gmail.com", "synopsis": "Get in touch directly." }
+    { "id": "music", "title": "Music", "poster": "images/placeholder-pick-music.svg", "url": "#" },
+    { "id": "reading", "title": "Reading", "poster": "images/placeholder-pick-reading.svg", "url": "#" }
   ],
   "topPicksStalker": [
-    { "id": "netflix", "title": "Netflix", "poster": "images/placeholder-stalker-netflix.svg", "url": "#", "synopsis": "What I'm watching — link coming soon." },
-    { "id": "banger-music", "title": "Banger Music", "poster": "images/placeholder-stalker-spotify.svg", "url": "#", "synopsis": "The playlist. Link coming soon." },
-    { "id": "instagram", "title": "Instagram", "poster": "images/placeholder-stalker-instagram.svg", "url": "#", "synopsis": "Link coming soon." },
-    { "id": "craft", "title": "Craft", "poster": "images/placeholder-stalker-craft.svg", "url": "#", "synopsis": "Link coming soon." }
+    { "id": "netflix", "title": "Netflix", "poster": "images/placeholder-stalker-netflix.svg", "url": "#" },
+    { "id": "banger-music", "title": "Banger Music", "poster": "images/placeholder-stalker-spotify.svg", "url": "#" },
+    { "id": "instagram", "title": "Instagram", "poster": "images/placeholder-stalker-instagram.svg", "url": "#" },
+    { "id": "craft", "title": "Craft", "poster": "images/placeholder-stalker-craft.svg", "url": "#" }
   ],
-  "funExtras": {
-    "promotion": "videos/promotion.gif",
-    "whyReferMe": "videos/why-refer-me.gif"
-  },
   "hireMe": {
     "heading": "Hire Me",
     "body": "Full page coming soon. In the meantime, reach out directly.",
