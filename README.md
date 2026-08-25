@@ -1,56 +1,49 @@
-# Priyanka — Netflix-style Portfolio
+# Priyanka — Netflix Portfolio v2 (Who's Watching)
 
-Static site. No build step. Everything content-wise lives in **`data.json`**.
+Static site, no build step. All content lives in **`data.json`**.
 
-## File structure
-```
-index.html        the page shell
-css/style.css      all styling
-js/main.js         reads data.json, renders hero/rows/cards, runs the modal
-data.json           <-- YOU EDIT THIS to add/remove/update content
-images/              posters, backdrops, connect thumbnails (SVG placeholders included)
-assets/              put your resume PDF etc. here
-```
+## Flow
+1. Intro logo animation (~2s)
+2. "Who's Watching?" — pick Recruiter / Referrer / Stalker
+3. Short intro clip plays for that profile (skip button available)
+4. Lands on the profile-specific browse page
 
-## Adding / editing a project
-Open `data.json`, find the `"projects"` array, copy an existing entry and edit:
+## Structure per profile
+- **Recruiter & Referrer** (identical structure, same data):
+  Continue Watching → Work Permit → Skills → Experience → Awards →
+  Recommendations (placeholder) → Projects → Today's Top Picks → Hire Me
+- **Stalker**: Continue Watching → Today's Top Picks (Netflix, Banger Music,
+  Instagram, Craft — all placeholder links right now) → Hire Me
 
-- `poster` — tall image (2:3), shown in the row cards. 300x450px ideal.
-- `backdrop` — wide image (16:9), shown at the top of the popup. 1280x720px ideal.
-- `featured: true` — also shows this project in the "Featured Projects" row.
-- `embedType` — controls what shows in the popup:
-  - `"iframe"` — embeds `liveAppUrl` directly in the popup so people can try the live app.
-  - `"tableau"` — shows an "Open on Tableau Public ↗" button.
-  - `"link"` — shows a "View Source on GitHub ↗" button.
-- Delete a project by deleting its object from the array (don't forget the comma).
+Top nav (Home / Professional / Skills / Projects / Hire Me) scrolls the
+same page. On the Stalker profile, Professional/Skills/Projects are
+grayed out since that content doesn't exist there.
 
-## Adding / editing a Connect card
-Same idea, under `"connect"`. `url` is where the card's button goes (mailto:, https://..., or a PDF in `/assets`).
+## Editing content — all in `data.json`
+- `profiles` — avatar image, accent color, intro video/gif, hero text per profile
+- `workPermit` — heading + lines shown in the Work Permit popup
+- `skills` — name + icon (currently placeholder monogram tiles in `images/skill-*.svg`)
+- `experience` — one entry per role; `bullets` show in the popup
+- `awards` — title / year / category
+- `recommendations` — empty for now; add `{ "name", "role", "quote" }` objects to populate
+- `projects` — same project objects as before (poster, backdrop, synopsis, tags, embedType, links)
+- `topPicksShared` — Music / Reading / Blogs / Contact Me (Recruiter & Referrer)
+- `topPicksStalker` — Netflix / Banger Music / Instagram / Craft (Stalker)
+- `funExtras` — the promotion.gif / why-refer-me.gif easter-egg banners
+- `hireMe` — placeholder heading/body/email until the dedicated page is built
 
-## Swapping placeholder images
-The `images/placeholder-*.svg` files are stand-ins. Replace the filenames in `data.json`
-with real screenshots (JPG/PNG/WebP work fine) — same field, just point to the new file.
-
-## Hero video
-`data.json → hero.backgroundVideo` — currently a stock loop. Swap the URL for your own
-video (host it in `/assets` or anywhere public, e.g. an MP4 URL) any time.
+## Known placeholders to swap later
+- All `topPicksShared` and `topPicksStalker` URLs are `#` — add real links when ready
+- Skill icons are colored initials — swap for real logos in `images/skill-*.svg` (keep filenames or update the `icon` path in `data.json`)
+- Recommendations row is empty — add entries when you have quotes
+- Hire Me is a placeholder note — build the real page later and update the nav link / `hireMe` object
 
 ## Local preview
 ```
 python3 -m http.server 8000
 ```
-then open `http://localhost:8000`.
+Open `http://localhost:8000`.
 
-## Deploying to your existing GitHub Pages URL
-Your site is served from the `PBR` repo at `priyankabasavaraj.github.io/PBR/`.
-
-1. Clone your repo (or open it locally).
-2. Delete the old files (or move them to an `/archive` folder if you want to keep them).
-3. Copy everything from this folder into the repo root.
-4. Commit and push:
-   ```
-   git add .
-   git commit -m "Rebuild portfolio as Netflix-style site"
-   git push
-   ```
-5. GitHub Pages will redeploy automatically at the same URL within a minute or two.
+## Deploy
+Same as before — push these files to your GitHub repo (or a new one) and
+enable GitHub Pages, source = `main` branch, `/ (root)`.

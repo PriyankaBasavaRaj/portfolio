@@ -517,3 +517,276 @@ a:focus-visible, button:focus-visible {
   outline: 2px solid var(--red);
   outline-offset: 2px;
 }
+
+/* ================= V2 ADDITIONS: INTRO / PROFILE GATE / BROWSE ================= */
+
+.screen {
+  position: fixed;
+  inset: 0;
+  z-index: 500;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background: #000;
+  opacity: 1;
+  transition: opacity .5s ease;
+}
+
+.screen.hidden {
+  opacity: 0;
+  pointer-events: none;
+}
+
+.screen[data-state="offstage"] { display: none; }
+
+/* ---- Intro logo animation ---- */
+.intro-logo {
+  font-family: var(--font-display);
+  font-size: clamp(4rem, 18vw, 10rem);
+  color: var(--red);
+  letter-spacing: 4px;
+  animation: logoPulse 1.8s cubic-bezier(.2,.8,.2,1) forwards;
+  text-shadow: 0 0 60px rgba(229,9,20,.5);
+}
+
+@keyframes logoPulse {
+  0% { transform: scale(.3); opacity: 0; letter-spacing: 12px; }
+  55% { transform: scale(1.08); opacity: 1; letter-spacing: 4px; }
+  100% { transform: scale(1); opacity: 1; }
+}
+
+/* ---- Who's watching ---- */
+.profile-gate {
+  flex-direction: column;
+  gap: 40px;
+  text-align: center;
+  padding: 20px;
+}
+
+.profile-gate h1 {
+  font-family: var(--font-body);
+  font-weight: 500;
+  font-size: clamp(1.6rem, 4vw, 2.6rem);
+  letter-spacing: .5px;
+  margin: 0;
+}
+
+.profile-grid {
+  display: flex;
+  gap: clamp(16px, 4vw, 40px);
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.profile-tile {
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 14px;
+  cursor: pointer;
+}
+
+.profile-avatar {
+  width: clamp(90px, 16vw, 160px);
+  height: clamp(90px, 16vw, 160px);
+  border-radius: 8px;
+  overflow: hidden;
+  border: 3px solid transparent;
+  transition: border-color .15s ease, transform .15s ease;
+}
+
+.profile-avatar img { width: 100%; height: 100%; object-fit: cover; }
+
+.profile-tile:hover .profile-avatar,
+.profile-tile:focus-visible .profile-avatar {
+  border-color: var(--text);
+  transform: scale(1.05);
+}
+
+.profile-tile span {
+  font-size: 1rem;
+  transition: color .15s ease;
+}
+
+.profile-tile:hover span,
+.profile-tile:focus-visible span { color: var(--text); }
+
+/* ---- Profile intro playback ---- */
+.profile-intro-screen video,
+.profile-intro-screen img {
+  max-width: 100%;
+  max-height: 100%;
+  width: auto;
+  height: auto;
+}
+
+.profile-intro-skip {
+  position: absolute;
+  bottom: 40px;
+  right: 40px;
+  background: rgba(20,20,20,.7);
+  color: var(--text);
+  border: 1px solid var(--text-faint);
+  border-radius: 4px;
+  padding: 10px 20px;
+  font-size: .9rem;
+}
+
+/* ---- Browse nav (profile-aware) ---- */
+.browse-nav-links a.disabled {
+  opacity: .35;
+  pointer-events: none;
+}
+
+.profile-switcher {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  cursor: pointer;
+  background: none;
+  border: none;
+  color: var(--text-dim);
+  font-size: .85rem;
+}
+
+.profile-switcher img {
+  width: 30px; height: 30px;
+  border-radius: 5px;
+  object-fit: cover;
+}
+
+.profile-switcher:hover { color: var(--text); }
+
+/* ---- Text-content cards (Work Permit / Experience / Awards) ---- */
+.text-card {
+  flex: 0 0 auto;
+  width: 260px;
+  min-height: 150px;
+  border-radius: 6px;
+  background: linear-gradient(155deg, #1c1c1c, #101010);
+  border: 1px solid #262626;
+  padding: 18px;
+  cursor: pointer;
+  transition: transform .2s ease, border-color .2s ease;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.text-card:hover, .text-card:focus-visible {
+  transform: translateY(-4px);
+  border-color: var(--red);
+  outline: none;
+}
+
+.text-card-eyebrow {
+  font-size: .72rem;
+  letter-spacing: 1.5px;
+  text-transform: uppercase;
+  color: var(--text-faint);
+  margin-bottom: 8px;
+}
+
+.text-card-title {
+  font-size: 1rem;
+  font-weight: 700;
+  margin-bottom: 6px;
+}
+
+.text-card-sub {
+  font-size: .82rem;
+  color: var(--text-dim);
+}
+
+/* ---- Skill tile (compact, square icon + label) ---- */
+.skill-card {
+  flex: 0 0 auto;
+  width: 120px;
+  text-align: center;
+  cursor: default;
+}
+
+.skill-card img {
+  width: 100%;
+  aspect-ratio: 1/1;
+  border-radius: 6px;
+  object-fit: cover;
+  margin-bottom: 8px;
+}
+
+.skill-card span {
+  font-size: .78rem;
+  color: var(--text-dim);
+}
+
+/* ---- Empty / coming soon row ---- */
+.empty-row-note {
+  padding: 0 var(--edge);
+  color: var(--text-faint);
+  font-size: .9rem;
+}
+
+/* ---- Modal text-block variant ---- */
+.modal-text-block {
+  padding: 32px 40px 40px;
+}
+
+.modal-text-block h2 {
+  font-family: var(--font-display);
+  font-size: clamp(1.6rem, 3.4vw, 2.2rem);
+  letter-spacing: .5px;
+  margin: 0 0 18px;
+}
+
+.modal-text-block p {
+  color: var(--text);
+  line-height: 1.6;
+  font-size: .98rem;
+  margin: 0 0 12px;
+}
+
+.modal-text-block ul {
+  margin: 0;
+  padding-left: 20px;
+  color: var(--text-dim);
+  line-height: 1.7;
+}
+
+.modal-text-block .modal-meta-row {
+  margin-bottom: 16px;
+}
+
+/* ---- Stalker fun row ---- */
+.stalker-hero-note {
+  padding: 0 var(--edge);
+  color: var(--text-dim);
+  font-size: .95rem;
+  margin-bottom: 20px;
+  max-width: 500px;
+}
+
+/* ---- Easter egg banner (promotion / why-refer-me gifs) ---- */
+.easter-egg-banner {
+  margin: 0 var(--edge) 30px;
+  border-radius: 8px;
+  overflow: hidden;
+  max-width: 420px;
+  border: 1px solid #262626;
+}
+
+.easter-egg-banner img { width: 100%; display: block; }
+
+.easter-egg-caption {
+  padding: 10px 14px;
+  font-size: .82rem;
+  color: var(--text-faint);
+  background: #111;
+}
+
+@media (max-width: 600px) {
+  .profile-grid { gap: 20px; }
+  .text-card { width: 200px; }
+}

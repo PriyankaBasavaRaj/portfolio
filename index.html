@@ -4,7 +4,7 @@
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 <title>Priyanka Basava Raj — Portfolio</title>
-<meta name="description" content="Priyanka Basava Raj — Senior Analytics Consultant. A Netflix-style portfolio of data, analytics, and AI projects.">
+<meta name="description" content="Priyanka Basava Raj — Senior Analytics Consultant. A Netflix-style portfolio.">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -12,97 +12,77 @@
 </head>
 <body>
 
-<nav class="nav" id="siteNav">
-  <div class="nav-brand">PRIYANKA</div>
-  <ul class="nav-links">
-    <li><a href="#row-featured">Featured</a></li>
-    <li><a href="#row-all">All Projects</a></li>
-    <li><a href="#row-connect">Connect</a></li>
-  </ul>
-  <div class="nav-right">
-    <span>Atlanta, GA</span>
-    <div class="nav-avatar">PB</div>
+<!-- SCREEN 1: INTRO ANIMATION -->
+<div class="screen" id="screenIntro" data-state="active">
+  <div class="intro-logo">PRIYANKA</div>
+</div>
+
+<!-- SCREEN 2: WHO'S WATCHING -->
+<div class="screen hidden profile-gate" id="screenProfiles" data-state="offstage">
+  <h1>Who's Watching?</h1>
+  <div class="profile-grid" id="profileGrid"></div>
+</div>
+
+<!-- SCREEN 3: PROFILE INTRO PLAYBACK -->
+<div class="screen hidden profile-intro-screen" id="screenProfileIntro" data-state="offstage">
+  <div id="profileIntroMedia"></div>
+  <button class="profile-intro-skip" id="skipIntroBtn">Skip</button>
+</div>
+
+<!-- MAIN BROWSE APP (hidden until a profile is chosen) -->
+<div id="app" style="display:none;">
+
+  <nav class="nav" id="siteNav">
+    <div class="nav-brand">PRIYANKA</div>
+    <ul class="nav-links browse-nav-links" id="browseNavLinks">
+      <li><a href="#top">Home</a></li>
+      <li><a href="#section-professional">Professional</a></li>
+      <li><a href="#section-skills">Skills</a></li>
+      <li><a href="#section-projects">Projects</a></li>
+      <li><a href="#section-hire-me">Hire Me</a></li>
+    </ul>
+    <button class="profile-switcher" id="profileSwitcher">
+      <img id="navProfileAvatar" src="" alt="">
+      <span id="navProfileLabel"></span>
+    </button>
+  </nav>
+
+  <header class="hero" id="top">
+    <div class="hero-media">
+      <img id="heroImg" src="images/hero-poster.svg" alt="">
+      <div class="hero-fade-side"></div>
+    </div>
+    <div class="hero-fade-bottom"></div>
+    <div class="hero-content">
+      <p class="hero-eyebrow" id="heroTagline"></p>
+      <h1 class="hero-title">Priyanka</h1>
+      <p class="hero-synopsis" id="heroSynopsis"></p>
+      <div class="hero-actions">
+        <a href="#section-professional" class="btn btn-primary">
+          <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
+          View Profile
+        </a>
+        <a href="#section-hire-me" class="btn btn-secondary">Hire Me</a>
+      </div>
+    </div>
+  </header>
+
+  <main class="rows" id="rowsContainer"></main>
+
+  <footer class="site-footer">
+    <div class="footer-links">
+      <a href="https://au.linkedin.com/in/priyanka-basava-raj" target="_blank" rel="noopener">LinkedIn</a>
+      <a href="https://github.com/PriyankaBasavaRaj/Portfolio-Project" target="_blank" rel="noopener">GitHub</a>
+      <a href="https://public.tableau.com/app/profile/priyanka.raj5710" target="_blank" rel="noopener">Tableau</a>
+      <a href="mailto:priyankabraj123@gmail.com">Email</a>
+    </div>
+    <p>Built by Priyanka Basava Raj · Not affiliated with Netflix, Inc.</p>
+  </footer>
+
+  <div class="modal-overlay" id="modalOverlay">
+    <div class="modal" id="modal"></div>
   </div>
-</nav>
 
-<header class="hero">
-  <div class="hero-media">
-    <video id="heroVideo" autoplay muted loop playsinline></video>
-    <div class="hero-fade-side"></div>
-  </div>
-  <div class="hero-fade-bottom"></div>
-  <div class="hero-content">
-    <p class="hero-eyebrow" id="heroTagline"></p>
-    <h1 class="hero-title" id="heroTitle"></h1>
-    <div class="hero-meta">
-      <span class="match" id="heroMatch"></span>
-      <span class="rated">DATA-18</span>
-      <span id="heroMetaExtra" style="display:flex;gap:8px;"></span>
-    </div>
-    <p class="hero-synopsis" id="heroSynopsis"></p>
-    <div class="hero-actions">
-      <a href="#row-featured" class="btn btn-primary">
-        <svg viewBox="0 0 24 24" fill="currentColor"><polygon points="6,4 20,12 6,20"/></svg>
-        View Work
-      </a>
-      <a href="#row-connect" class="btn btn-secondary">More Info</a>
-    </div>
-  </div>
-</header>
-
-<main class="rows">
-  <section class="row" id="row-featured">
-    <div class="row-header"><h2 class="row-title">Featured Projects</h2></div>
-    <div class="row-track-wrap">
-      <button class="row-arrow left" aria-label="Scroll left">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <div class="row-track" id="trackFeatured"></div>
-      <button class="row-arrow right" aria-label="Scroll right">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div>
-  </section>
-
-  <section class="row" id="row-all">
-    <div class="row-header"><h2 class="row-title">All Projects</h2></div>
-    <div class="row-track-wrap">
-      <button class="row-arrow left" aria-label="Scroll left">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <div class="row-track" id="trackAll"></div>
-      <button class="row-arrow right" aria-label="Scroll right">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div>
-  </section>
-
-  <section class="row" id="row-connect">
-    <div class="row-header"><h2 class="row-title">Connect with Me</h2></div>
-    <div class="row-track-wrap">
-      <button class="row-arrow left" aria-label="Scroll left">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="15 18 9 12 15 6"/></svg>
-      </button>
-      <div class="row-track" id="trackConnect"></div>
-      <button class="row-arrow right" aria-label="Scroll right">
-        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"><polyline points="9 18 15 12 9 6"/></svg>
-      </button>
-    </div>
-  </section>
-</main>
-
-<footer class="site-footer">
-  <div class="footer-links">
-    <a href="https://au.linkedin.com/in/priyanka-basava-raj" target="_blank" rel="noopener">LinkedIn</a>
-    <a href="https://github.com/PriyankaBasavaRaj/Portfolio-Project" target="_blank" rel="noopener">GitHub</a>
-    <a href="https://public.tableau.com/app/profile/priyanka.raj5710" target="_blank" rel="noopener">Tableau</a>
-    <a href="mailto:priyankabraj123@gmail.com">Email</a>
-  </div>
-  <p>Built by Priyanka Basava Raj · Not affiliated with Netflix, Inc.</p>
-</footer>
-
-<div class="modal-overlay" id="modalOverlay">
-  <div class="modal" id="modal"></div>
 </div>
 
 <script src="js/main.js"></script>

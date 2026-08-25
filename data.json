@@ -1,28 +1,141 @@
 {
-  "hero": {
-    "title": "Priyanka",
-    "logoText": "PRIYANKA",
-    "tagline": "Senior Analytics Consultant · Data, GCP & AI-driven Growth Stories",
-    "backgroundVideo": "https://cdn.coverr.co/videos/coverr-typing-on-a-laptop-9573/1080p.mp4",
-    "backgroundPoster": "images/hero-poster.svg",
-    "match": "98% Match",
-    "meta": ["2025", "Analytics", "GCP · BigQuery · GA4", "Atlanta, GA"],
-    "synopsis": "From Sydney to Atlanta: a Senior Analytics Consultant turning messy data into decisions, dashboards, and AI-powered products. Featuring appearances by SQL, Python, BigQuery, and one very persistent Tableau habit."
+  "site": {
+    "logoText": "PRIYANKA"
   },
-  "rows": [
+  "profiles": [
     {
-      "id": "featured",
-      "title": "Featured Projects"
+      "id": "recruiter",
+      "label": "Recruiter",
+      "avatar": "images/avatar-recruiter.png",
+      "accent": "#2FA8E0",
+      "introType": "video",
+      "introSrc": "videos/recruiter-intro.mp4",
+      "heroTagline": "Senior Analytics Consultant · Ready for the next role",
+      "heroSynopsis": "Data, GCP, and AI-driven growth stories from Sydney to Atlanta. Scroll down for work authorization, skills, experience, awards, and the projects that back it all up."
     },
     {
-      "id": "all",
-      "title": "All Projects"
+      "id": "referrer",
+      "label": "Referrer",
+      "avatar": "images/avatar-referrer.png",
+      "accent": "#E8B330",
+      "introType": "gif",
+      "introSrc": "videos/referrer-intro.gif",
+      "heroTagline": "Thinking of referring me? Here's everything you need.",
+      "heroSynopsis": "Same story, referrer's cut: work authorization, skills, experience, awards, and projects — all in one place to make the referral easy."
     },
     {
-      "id": "connect",
-      "title": "Connect with Me"
+      "id": "stalker",
+      "label": "Stalker",
+      "avatar": "images/avatar-stalker.png",
+      "accent": "#D63A3A",
+      "introType": "gif",
+      "introSrc": "videos/stalker-intro.gif",
+      "heroTagline": "Okay, you found the secret profile.",
+      "heroSynopsis": "No resume here — just the fun stuff. Enjoy."
     }
   ],
+  "workPermit": {
+    "heading": "Work Authorization",
+    "lines": [
+      "I am authorized to work in the United States without any restrictions. I don't need any sponsorship now or in the future.",
+      "Open to relocation and traveling for work."
+    ]
+  },
+  "skills": [
+    { "name": "GCP", "icon": "images/skill-gcp.svg" },
+    { "name": "BigQuery", "icon": "images/skill-bigquery.svg" },
+    { "name": "GA4", "icon": "images/skill-ga4.svg" },
+    { "name": "Vertex AI", "icon": "images/skill-vertex-ai.svg" },
+    { "name": "AutoML", "icon": "images/skill-automl.svg" },
+    { "name": "Python", "icon": "images/skill-python.svg" },
+    { "name": "SQL", "icon": "images/skill-sql.svg" },
+    { "name": "dbt", "icon": "images/skill-dbt.svg" },
+    { "name": "Databricks", "icon": "images/skill-databricks.svg" },
+    { "name": "GTM", "icon": "images/skill-gtm.svg" },
+    { "name": "Looker Studio", "icon": "images/skill-looker-studio.svg" },
+    { "name": "Tableau", "icon": "images/skill-tableau.svg" },
+    { "name": "Power BI", "icon": "images/skill-power-bi.svg" },
+    { "name": "Salesforce", "icon": "images/skill-salesforce.svg" },
+    { "name": "HubSpot", "icon": "images/skill-hubspot.svg" },
+    { "name": "GitLab", "icon": "images/skill-gitlab.svg" }
+  ],
+  "experience": [
+    {
+      "id": "trkkn-senior",
+      "role": "Senior Analytics Consultant",
+      "company": "TRKKN (Omnicom Media Group)",
+      "dates": "2024 – Dec 2025",
+      "bullets": [
+        "Managed a portfolio of 33 enterprise accounts",
+        "Led 5 of 7 enterprise RFPs end-to-end with 4 wins",
+        "Built propensity and conversion scoring models using AutoML and Vertex AI",
+        "Redesigned/optimized backend BigQuery SQL for workforce data pipelines on GCP, reducing processing time by 80% and lowering compute costs",
+        "Delivered AI/ML training to 1,500+ staff and clients",
+        "Automotive client CRM segmentation drove a ~63% relative increase in service utilization"
+      ]
+    },
+    {
+      "id": "trkkn-specialist",
+      "role": "Analytics Specialist",
+      "company": "TRKKN (Omnicom Media Group)",
+      "dates": "Apr 2022 – Jun 2024",
+      "bullets": [
+        "Achieved 170% average quota attainment (FY20: 160%, FY21: 180%)",
+        "Orchestrated the region's largest MDM engagement ($4M+), architecting the solution and managing C-level stakeholder alignment across two global manufacturing enterprises",
+        "Led migration of 5M+ records from 5 sources into GCP",
+        "Implemented a LightGBM learning-to-rank model for Telstra's \"Frequently Bought Together\" recommendations, improving buy-again rate by 17%",
+        "Defined activation metric framework from scratch for Canva, underpinning org-wide shift from MAU to DAU as north star metric",
+        "Drove ~462% revenue growth on the H&R Block account",
+        "Established a partner-led sales motion with Accenture, Deloitte, and TCS on Informatica products across APAC"
+      ]
+    },
+    {
+      "id": "unsw-tba",
+      "role": "Technical Business Analyst",
+      "company": "UNSW",
+      "dates": "Dec 2020 – Mar 2022",
+      "bullets": [
+        "Implemented SSO/SAML/MFA/OAuth/Auth0/Clerk/Firebase Auth",
+        "Built data/analytics workflows and reporting/dashboard capabilities",
+        "Partnered cross-functionally to translate business requirements into technical solutions"
+      ]
+    },
+    {
+      "id": "stoovo",
+      "role": "Marketing Data Analyst",
+      "company": "Stoovo",
+      "dates": "",
+      "bullets": [
+        "Analyzed the impact of different data sources on Stoovo's AI system",
+        "Conducted research and built ML pipelines to optimize AI solutions",
+        "Created visualizations and presentations to communicate data analysis results to business stakeholders"
+      ]
+    },
+    {
+      "id": "dream-built",
+      "role": "Data Analyst",
+      "company": "Dream Built PM",
+      "dates": "Apr 2020 – Dec 2020",
+      "bullets": [
+        "Performed data analysis and reporting to support property management operations"
+      ]
+    }
+  ],
+  "awards": [
+    {
+      "id": "bt-30u30",
+      "title": "B&T 30 Under 30 Finalist",
+      "year": "2025",
+      "category": "Tech"
+    },
+    {
+      "id": "young-guns",
+      "title": "Young Guns Tech Rising Star",
+      "year": "2024",
+      "category": "Tech"
+    }
+  ],
+  "recommendations": [],
   "projects": [
     {
       "id": "nashville-housing",
@@ -70,51 +183,25 @@
       "liveAppUrl": "https://public.tableau.com/app/profile/priyanka.raj5710"
     }
   ],
-  "connect": [
-    {
-      "id": "linkedin",
-      "title": "LinkedIn",
-      "poster": "images/placeholder-connect-linkedin.svg",
-      "synopsis": "Follow the professional journey — roles, recommendations, and everything in between.",
-      "tags": ["Network", "Professional"],
-      "cta": "Connect",
-      "url": "https://au.linkedin.com/in/priyanka-basava-raj"
-    },
-    {
-      "id": "github",
-      "title": "GitHub",
-      "poster": "images/placeholder-connect-github.svg",
-      "synopsis": "The source code behind the portfolio. Browse repos, commits, and works in progress.",
-      "tags": ["Code", "Open Source"],
-      "cta": "View Repos",
-      "url": "https://github.com/PriyankaBasavaRaj/Portfolio-Project"
-    },
-    {
-      "id": "tableau",
-      "title": "Tableau Public",
-      "poster": "images/placeholder-connect-tableau.svg",
-      "synopsis": "Dashboards and visual stories, published and ready to explore.",
-      "tags": ["Dashboards", "Visualization"],
-      "cta": "Explore",
-      "url": "https://public.tableau.com/app/profile/priyanka.raj5710"
-    },
-    {
-      "id": "email",
-      "title": "Email",
-      "poster": "images/placeholder-connect-email.svg",
-      "synopsis": "Straight to the inbox. For roles, collaborations, or just to say hi.",
-      "tags": ["Direct", "Contact"],
-      "cta": "Send Email",
-      "url": "mailto:priyankabraj123@gmail.com"
-    },
-    {
-      "id": "resume",
-      "title": "Resume",
-      "poster": "images/placeholder-connect-resume.svg",
-      "synopsis": "The full credits list — roles, tools, and results in one document.",
-      "tags": ["Download", "PDF"],
-      "cta": "Download",
-      "url": "assets/Priyanka_Basava_Raj_Resume.pdf"
-    }
-  ]
+  "topPicksShared": [
+    { "id": "music", "title": "Music", "poster": "images/placeholder-pick-music.svg", "url": "#", "synopsis": "A playlist page — coming soon." },
+    { "id": "reading", "title": "Reading", "poster": "images/placeholder-pick-reading.svg", "url": "#", "synopsis": "What I'm reading — coming soon." },
+    { "id": "blogs", "title": "Blogs", "poster": "images/placeholder-pick-blogs.svg", "url": "#", "synopsis": "Writing and notes — coming soon." },
+    { "id": "contact", "title": "Contact Me", "poster": "images/placeholder-pick-contact.svg", "url": "mailto:priyankabraj123@gmail.com", "synopsis": "Get in touch directly." }
+  ],
+  "topPicksStalker": [
+    { "id": "netflix", "title": "Netflix", "poster": "images/placeholder-stalker-netflix.svg", "url": "#", "synopsis": "What I'm watching — link coming soon." },
+    { "id": "banger-music", "title": "Banger Music", "poster": "images/placeholder-stalker-spotify.svg", "url": "#", "synopsis": "The playlist. Link coming soon." },
+    { "id": "instagram", "title": "Instagram", "poster": "images/placeholder-stalker-instagram.svg", "url": "#", "synopsis": "Link coming soon." },
+    { "id": "craft", "title": "Craft", "poster": "images/placeholder-stalker-craft.svg", "url": "#", "synopsis": "Link coming soon." }
+  ],
+  "funExtras": {
+    "promotion": "videos/promotion.gif",
+    "whyReferMe": "videos/why-refer-me.gif"
+  },
+  "hireMe": {
+    "heading": "Hire Me",
+    "body": "Full page coming soon. In the meantime, reach out directly.",
+    "email": "priyankabraj123@gmail.com"
+  }
 }
