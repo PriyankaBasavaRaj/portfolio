@@ -84,13 +84,24 @@
 
     renderNav(profile);
     renderRows(profile);
+
+    // Stalker has no Hire Me and no Continue Watching row — adjust hero actions accordingly
+    const heroHireMeBtn = $('#heroHireMeBtn');
+    const viewProfileBtn = $('#heroViewProfileBtn');
+    if (profile.id === 'stalker') {
+      heroHireMeBtn.style.display = 'none';
+      viewProfileBtn.setAttribute('href', '#row-top-picks');
+    } else {
+      heroHireMeBtn.style.display = '';
+      viewProfileBtn.setAttribute('href', '#row-continue-watching');
+    }
   }
 
   function renderNav(profile) {
     const fullProfile = profile.id !== 'stalker';
     $all('#browseNavLinks a').forEach(a => {
       const key = a.dataset.nav;
-      if (!fullProfile && (key === 'professional' || key === 'skills' || key === 'projects')) {
+      if (!fullProfile && (key === 'professional' || key === 'skills' || key === 'projects' || key === 'hireme')) {
         a.classList.add('disabled');
       } else {
         a.classList.remove('disabled');
@@ -173,14 +184,37 @@
       case 'modal-projects':
         openProjectsModal(d);
         break;
+      case 'modal-hireme':
+        openHireMeModal(d.hireMe);
+        break;
       case 'mailto-contact':
         window.location.href = `mailto:${d.hireMe.email}`;
         break;
     }
   }
 
-  // Single-click direct link card (no modal step)
+  // Single-click direct link card, OR action-driven card (opens the same modal as its icon)
   function pickLinkCard(item) {
+    if (item.action) {
+      const btn = document.createElement('button');
+      btn.className = 'pick-link-card';
+      btn.style.border = 'none';
+      btn.style.padding = '0';
+      btn.innerHTML = `<img src="${item.poster}" alt="${item.title}"><div class="pick-title">${item.title}</div>`;
+      btn.addEventListener('click', () => runUtilityAction(item.action));
+      return btn;
+    }
+    if (item.logo) {
+      const a = document.createElement('a');
+      a.className = 'pick-link-card pick-logo-card';
+      a.href = item.url;
+      a.target = '_blank';
+      a.rel = 'noopener';
+      a.innerHTML = `
+        <div class="pick-logo-tile"><img class="pick-logo-icon" src="${item.logo}" alt="${item.title}"></div>
+        <div class="pick-title">${item.title}</div>`;
+      return a;
+    }
     const a = document.createElement('a');
     a.className = 'pick-link-card';
     a.href = item.url;
@@ -212,15 +246,7 @@
     const d = state.data;
 
     if (profile.id === 'stalker') {
-      const cw = rowHeader(`Continue Watching for ${profile.label}`, 'row-continue-watching');
-      const cwWrap = trackWrap();
-      const cwTrack = $('.row-track', cwWrap);
-      d.projects.forEach(p => cwTrack.appendChild(projectLinkCard(p)));
-      cw.appendChild(cwWrap);
-      container.appendChild(cw);
-      wireArrows(cwWrap);
-
-      const picks = rowHeader(`Today's Top Picks for ${profile.label}`);
+      const picks = rowHeader(`Today's Top Picks for ${profile.label}`, 'row-top-picks');
       const picksWrap = trackWrap();
       const picksTrack = $('.row-track', picksWrap);
       d.topPicksStalker.forEach(item => picksTrack.appendChild(pickLinkCard(item)));
@@ -299,7 +325,25 @@
       <button class="modal-close" aria-label="Close" style="position:absolute;">${closeIcon()}</button>
       <div class="modal-text-block">
         <h2>Awards</h2>
-        <ul>${awards.map(a => `<li>${a.title}${a.category ? ' — ' + a.category : ''}, ${a.year}</li>`).join('')}</ul>
+        <ul>${awards.map(a => {
+          const text = `${a.title}${a.category ? ' — ' + a.category : ''}, ${a.year}`;
+          return a.url
+            ? `<li><a href="${a.url}" target="_blank" rel="noopener" style="color:var(--text);text-decoration:underline;">${text}</a></li>`
+            : `<li>${text}</li>`;
+        }).join('')}</ul>
+      </div>`);
+  }
+
+  function openHireMeModal(hireMe) {
+    openModalShell(`
+      <button class="modal-close" aria-label="Close" style="position:absolute;">${closeIcon()}</button>
+      <div class="modal-text-block">
+        <h2>${hireMe.heading}</h2>
+        ${hireMe.paragraphs.map(p => `<p>${p}</p>`).join('')}
+        <div class="hero-actions" style="margin-top:20px;">
+          <a class="btn btn-primary" href="${hireMe.linkedinUrl}" target="_blank" rel="noopener">Connect with me on LinkedIn</a>
+          <a class="btn btn-secondary" href="mailto:${hireMe.email}">Email Me</a>
+        </div>
       </div>`);
   }
 
@@ -358,7 +402,7 @@
         if (key === 'professional') openExperienceModal(d.experience);
         else if (key === 'skills') openSkillsModal(d.skills);
         else if (key === 'projects') openProjectsModal(d);
-        else if (key === 'hireme') window.location.href = `mailto:${d.hireMe.email}`;
+        else if (key === 'hireme') openHireMeModal(d.hireMe);
       });
     });
   }
@@ -379,7 +423,7 @@
     state.data = await loadData();
     $('#heroHireMeBtn').addEventListener('click', e => {
       e.preventDefault();
-      window.location.href = `mailto:${state.data.hireMe.email}`;
+      openHireMeModal(state.data.hireMe);
     });
     wireNav();
     runIntro();

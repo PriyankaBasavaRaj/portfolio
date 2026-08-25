@@ -31,16 +31,16 @@
       "heroBackgroundType": "gif",
       "heroBackgroundSrc": "videos/stalker-intro.gif",
       "heroTagline": "Okay, you found the secret profile.",
-      "heroSynopsis": "No resume here — just the fun stuff. Enjoy."
+      "heroSynopsis": "No resume here, just the fun stuff! Enjoy."
     }
   ],
   "utilityIcons": [
-    { "id": "workpermit", "label": "Work Permit", "photo": "https://picsum.photos/seed/priyanka-workpermit/500/650", "action": "modal-workpermit" },
-    { "id": "skills", "label": "Skills", "photo": "https://picsum.photos/seed/priyanka-skills/500/650", "action": "modal-skills" },
-    { "id": "experience", "label": "Experience", "photo": "https://picsum.photos/seed/priyanka-experience/500/650", "action": "modal-experience" },
-    { "id": "awards", "label": "Awards", "photo": "https://picsum.photos/seed/priyanka-awards/500/650", "action": "modal-awards" },
-    { "id": "projects", "label": "Projects", "photo": "https://picsum.photos/seed/priyanka-projects/500/650", "action": "modal-projects" },
-    { "id": "contact", "label": "Contact Me", "photo": "https://picsum.photos/seed/priyanka-contact/500/650", "action": "mailto-contact" }
+    { "id": "workpermit", "label": "Work Permit", "photo": "images/icon-photo-workpermit.jpg", "action": "modal-workpermit" },
+    { "id": "skills", "label": "Skills", "photo": "images/icon-photo-skills.jpg", "action": "modal-skills" },
+    { "id": "experience", "label": "Experience", "photo": "images/icon-photo-experience.jpg", "action": "modal-experience" },
+    { "id": "awards", "label": "Awards", "photo": "images/icon-photo-awards.jpg", "action": "modal-awards" },
+    { "id": "projects", "label": "Projects", "photo": "images/icon-photo-projects.jpg", "action": "modal-projects" },
+    { "id": "contact", "label": "Contact Me", "photo": "images/icon-photo-contact.jpg", "action": "mailto-contact" }
   ],
   "workPermit": {
     "heading": "Work Authorization",
@@ -52,20 +52,22 @@
   "skills": [
     { "name": "GCP", "icon": "images/skill-gcp.svg" },
     { "name": "BigQuery", "icon": "images/skill-bigquery.svg" },
-    { "name": "GA4", "icon": "images/skill-ga4.svg" },
-    { "name": "Vertex AI", "icon": "images/skill-vertex-ai.svg" },
-    { "name": "AutoML", "icon": "images/skill-automl.svg" },
-    { "name": "Python", "icon": "images/skill-python.svg" },
     { "name": "SQL", "icon": "images/skill-sql.svg" },
-    { "name": "dbt", "icon": "images/skill-dbt.svg" },
-    { "name": "Databricks", "icon": "images/skill-databricks.svg" },
-    { "name": "GTM", "icon": "images/skill-gtm.svg" },
-    { "name": "Looker Studio", "icon": "images/skill-looker-studio.svg" },
+    { "name": "Python", "icon": "images/skill-python.svg" },
     { "name": "Tableau", "icon": "images/skill-tableau.svg" },
-    { "name": "Power BI", "icon": "images/skill-power-bi.svg" },
-    { "name": "Salesforce", "icon": "images/skill-salesforce.svg" },
-    { "name": "HubSpot", "icon": "images/skill-hubspot.svg" },
-    { "name": "GitLab", "icon": "images/skill-gitlab.svg" }
+    { "name": "Looker", "icon": "images/skill-looker.svg" },
+    { "name": "A/B Testing", "icon": "images/skill-ab-testing.svg" },
+    { "name": "Hypothesis Testing", "icon": "images/skill-hypothesis-testing.svg" },
+    { "name": "LightGBM", "icon": "images/skill-lightgbm.svg" },
+    { "name": "User Lifecycle Strategy", "icon": "images/skill-user-lifecycle-strategy.svg" },
+    { "name": "Feature Adoption", "icon": "images/skill-feature-adoption.svg" },
+    { "name": "Roadmap Prioritization", "icon": "images/skill-roadmap-prioritization.svg" },
+    { "name": "Cursor AI", "icon": "images/skill-cursor-ai.svg" },
+    { "name": "Vertex AI AutoML", "icon": "images/skill-vertex-ai-automl.svg" },
+    { "name": "Propensity Modelling", "icon": "images/skill-propensity-modelling.svg" },
+    { "name": "Attribution Modelling", "icon": "images/skill-attribution-modelling.svg" },
+    { "name": "Privacy Sandbox", "icon": "images/skill-privacy-sandbox.svg" },
+    { "name": "First-Party Data Strategy", "icon": "images/skill-first-party-data-strategy.svg" }
   ],
   "experience": [
     {
@@ -130,7 +132,7 @@
     }
   ],
   "awards": [
-    { "id": "bt-30u30", "title": "B&T 30 Under 30 Finalist", "year": "2025", "category": "Tech" },
+    { "id": "bt-30u30", "title": "B&T 30 Under 30 Finalist", "year": "2025", "category": "Tech", "url": "https://www.bandt.com.au/fasten-your-seatbelts-finalists-for-bts-30-under-30-awards-have-been-revealed/" },
     { "id": "young-guns", "title": "Young Guns Tech Rising Star", "year": "2024", "category": "Tech" }
   ],
   "recommendations": [],
@@ -138,7 +140,7 @@
     "title": "Live Builds & Projects",
     "body": "More scripts, dashboards, and data experiments live on my GitHub.",
     "buttonLabel": "Explore GitHub",
-    "url": "https://github.com/PriyankaBasavaRaj/Portfolio-Project"
+    "url": "https://github.com/PriyankaBasavaRaj?tab=repositories"
   },
   "projects": [
     {
@@ -195,18 +197,24 @@
     }
   ],
   "topPicksShared": [
+    { "id": "hireme", "title": "Hire Me", "poster": "images/placeholder-pick-hireme.svg", "action": "modal-hireme" },
     { "id": "music", "title": "Music", "poster": "images/placeholder-pick-music.svg", "url": "#" },
-    { "id": "reading", "title": "Reading", "poster": "images/placeholder-pick-reading.svg", "url": "#" }
+    { "id": "contact", "title": "Contact Me", "poster": "images/icon-photo-contact.jpg", "action": "mailto-contact" }
   ],
   "topPicksStalker": [
-    { "id": "netflix", "title": "Netflix", "poster": "images/placeholder-stalker-netflix.svg", "url": "#" },
-    { "id": "banger-music", "title": "Banger Music", "poster": "images/placeholder-stalker-spotify.svg", "url": "#" },
-    { "id": "instagram", "title": "Instagram", "poster": "images/placeholder-stalker-instagram.svg", "url": "#" },
-    { "id": "craft", "title": "Craft", "poster": "images/placeholder-stalker-craft.svg", "url": "#" }
+    { "id": "instagram", "title": "Instagram", "logo": "https://cdn.simpleicons.org/instagram/E4405F", "url": "https://www.instagram.com" },
+    { "id": "linkedin", "title": "LinkedIn", "logo": "https://cdn.simpleicons.org/linkedin/0A66C2", "url": "http://linkedin.com" },
+    { "id": "spotify", "title": "Spotify", "logo": "https://cdn.simpleicons.org/spotify/1DB954", "url": "https://open.spotify.com" },
+    { "id": "netflix", "title": "Netflix", "logo": "https://cdn.simpleicons.org/netflix/E50914", "url": "http://netflix.com" }
   ],
   "hireMe": {
     "heading": "Hire Me",
-    "body": "Full page coming soon. In the meantime, reach out directly.",
-    "email": "priyankabraj123@gmail.com"
+    "paragraphs": [
+      "You want more proof? Talk to me.",
+      "Stephen King once said, \"Intelligence is the ability to adapt to change,\" and I truly believe that.",
+      "Adaptability is one of my best skills. I've learned more from diving into things I had absolutely no idea about — technical implementations, mentorship, training a whole auditorium, and more."
+    ],
+    "email": "priyankabraj123@gmail.com",
+    "linkedinUrl": "https://au.linkedin.com/in/priyanka-basava-raj"
   }
 }

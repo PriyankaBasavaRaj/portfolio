@@ -122,11 +122,17 @@ button { font-family: inherit; cursor: pointer; }
   z-index: 0;
 }
 
-.hero-media video,
-.hero-media img {
+.hero-media video {
   width: 100%; height: 100%;
   object-fit: cover;
   filter: brightness(.6);
+}
+
+.hero-media img {
+  width: 100%; height: 100%;
+  object-fit: contain;
+  background: #000;
+  filter: brightness(.85);
 }
 
 .hero-fade-bottom {
@@ -869,6 +875,10 @@ a:focus-visible, button:focus-visible {
   display: block;
   position: relative;
   transition: transform .2s ease;
+  background: none;
+  font-family: inherit;
+  text-align: left;
+  cursor: pointer;
 }
 
 .pick-link-card img {
@@ -1048,4 +1058,33 @@ a:focus-visible, button:focus-visible {
 @media (max-width: 640px) {
   .hero-media-frame { top: 12%; width: 92vw; }
   .utility-icon-card { width: 170px; }
+}
+
+/* ---- Logo pick card (Stalker's Instagram/LinkedIn/Spotify/Netflix links) ---- */
+.pick-logo-card .pick-logo-tile {
+  width: 100%;
+  aspect-ratio: 1/1;
+  background: #141414;
+  border: 1px solid #262626;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.pick-logo-card .pick-logo-icon {
+  width: 45%;
+  height: 45%;
+  object-fit: contain;
+}
+
+.pick-logo-card:hover .pick-logo-tile,
+.pick-logo-card:focus-visible .pick-logo-tile {
+  border-color: var(--red);
+}
+
+.pick-logo-card .pick-title {
+  position: static;
+  background: none;
+  padding: 10px 2px 0;
+  text-align: center;
 }
